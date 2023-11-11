@@ -1,11 +1,12 @@
-import './App.css';
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import TopBar from "./components/TopBar";
 
 function App() {
   return (
-    <>
-    <div> Hello    
-    </div>
-    </>
+    <BrowserRouter>
+      <TopBar />
+    </BrowserRouter>
   );
 }
 
