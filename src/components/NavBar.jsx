@@ -11,7 +11,7 @@ const NavBar = () => {
             <Image
               src="images/Logo.png"
               alt="logo"
-              style={{ height: "40px" }}
+              style={{ height: "50px", width: "100px" }}
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
