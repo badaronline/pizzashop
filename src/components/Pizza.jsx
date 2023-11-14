@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Button, Row, Col, Modal } from "react-bootstrap";
 
 const Pizza = ({ pizza }) => {
   const [variant, setVariant] = useState("small");
   const [quantity, setQuantity] = useState(1);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <Card style={{ width: "18rem", margin: "20px" }}>
-        <Card.Img variant="top" src={pizza.image} style={{ height: "180px" }} />
+        <Card.Img
+          variant="top"
+          src={pizza.image}
+          style={{ height: "180px", cursor: "pointer" }}
+          onClick={handleShow}
+        />
         <Card.Body>
           <Card.Title>{pizza.name}</Card.Title>
           <hr />
@@ -53,6 +63,25 @@ const Pizza = ({ pizza }) => {
           </Row>
         </Card.Body>
       </Card>
+      {/* modal */}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{pizza.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <Card.Img
+              variant="top"
+              src={pizza.image}
+              style={{ height: "180px" }}
+            />
+          </div>
+          <div>
+            <h5>Description: </h5>
+            <h6> {pizza.description}</h6>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
