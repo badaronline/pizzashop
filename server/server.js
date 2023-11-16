@@ -1,19 +1,31 @@
+// server.js
 import express from "express";
 import morgan from "morgan";
-import colors from "colors";
+import dotenv from "dotenv";
+import connectDB from "./config/config.js";
+import "colors";
+
+dotenv.config();
+
+// Connection to MongoDB
+connectDB();
 
 const app = express();
-const PORT = 8080;
 
-//middlewares
+// Middlewares
 app.use(express.json());
 app.use(morgan("dev"));
 
-//route
+// Route
 app.get("/", (req, res) => {
-  res.send("<h1> Hello From Node Server </h1>");
+  res.send("<h1>Hello From Node Server</h1>");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server Running on ${PORT}`);
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(
+    `Server Running on ${
+      process.env.NODE_ENV || "development"
+    } mode on port no ${port}`.bgMagenta.white
+  );
 });
