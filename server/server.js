@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import connectDB from "./config/config.js";
+import pizzaRoute from "./routes/pizzaRoute.js";
 import "colors";
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // Route
+app.use("/api/pizzas", pizzaRoute);
 app.get("/", (req, res) => {
   res.send("<h1>Hello From Node Server</h1>");
 });
