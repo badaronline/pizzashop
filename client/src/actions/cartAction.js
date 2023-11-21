@@ -1,0 +1,16 @@
+export const addToCart = (pizza, quantity, variant) => (dispatch) => {
+  const cartItem = {
+    name: pizza.name,
+    _id: pizza._id,
+    image: pizza.image,
+    variant: variant,
+    quantity: quantity,
+    prices: pizza.prices,
+    price: pizza.prices[0][variant] * quantity,
+  };
+  dispatch({ type: "ADD_TO_CART", payload: cartItem });
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(getState().cartReducer.cartItems)
+  );
+};

@@ -21,10 +21,22 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import { getAllPizzaReducer } from "./reducers/pizzaReducer";
+import { cartReducer } from "./reducers/cartReducer";
 
 const rootReducer = combineReducers({
   getAllPizzaReducer,
+  cartReducer,
 });
+
+const cartItem = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const inititalState = {
+  cartReducer: {
+    cartItems,
+  },
+};
 
 const middleware = [thunk];
 

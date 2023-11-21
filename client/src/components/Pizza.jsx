@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Card, Button, Row, Col, Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../actions/cartAction";
 
 const Pizza = ({ pizza }) => {
   const [variant, setVariant] = useState("small");
   const [quantity, setQuantity] = useState(1);
   const [show, setShow] = useState(false);
 
+  const dispatch = useDispatch(function)
+  const addToCartHandler = () => {
+    dispatch(addToCart(pizza,quantity, variant ))
+  }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
