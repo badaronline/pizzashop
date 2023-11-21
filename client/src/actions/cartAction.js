@@ -1,4 +1,4 @@
-export const addToCart = (pizza, quantity, variant) => (dispatch) => {
+export const addToCart = (pizza, quantity, variant) => (dispatch, getState) => {
   const cartItem = {
     name: pizza.name,
     _id: pizza._id,

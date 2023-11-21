@@ -28,13 +28,13 @@ const rootReducer = combineReducers({
   cartReducer,
 });
 
-const cartItem = localStorage.getItem("cartItems")
+const cartItems = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
 const inititalState = {
   cartReducer: {
-    cartItems,
+    cartItems: cartItems,
   },
 };
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button, Row, Col, Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../actions/cartAction";
 
 const Pizza = ({ pizza }) => {
@@ -8,10 +8,10 @@ const Pizza = ({ pizza }) => {
   const [quantity, setQuantity] = useState(1);
   const [show, setShow] = useState(false);
 
-  const dispatch = useDispatch(function)
+  const dispatch = useDispatch();
   const addToCartHandler = () => {
-    dispatch(addToCart(pizza,quantity, variant ))
-  }
+    dispatch(addToCart(pizza, quantity, variant));
+  };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -64,7 +64,12 @@ const Pizza = ({ pizza }) => {
               Price: €{pizza.prices[0][variant] * quantity}
             </Col>
             <Col md={6}>
-              <Button className="bg-warning text-white">Add to cart</Button>
+              <Button
+                onClick={addToCartHandler}
+                className="bg-warning text-white"
+              >
+                Add to cart
+              </Button>
             </Col>
           </Row>
         </Card.Body>
