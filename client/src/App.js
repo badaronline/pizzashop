@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import Policy from "./components/Policy";
 import NavBar from "./components/NavBar";
 import HomeScreen from "./screens/HomeScreen";
+import CartScreen from "./screens/CartScreen";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <TopBar />
       <NavBar />
       <Routes>
+        <Route path="/cart" element={<CartScreen />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />

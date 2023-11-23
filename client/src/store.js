@@ -32,7 +32,7 @@ const cartItems = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
-const inititalState = {
+const initialState = {
   cartReducer: {
     cartItems: cartItems,
   },
