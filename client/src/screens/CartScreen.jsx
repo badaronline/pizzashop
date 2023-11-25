@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
-import { addToCart } from "../actions/cartAction";
+import { FaMinusCircle, FaPlusCircle, FaTrash } from "react-icons/fa";
+import { addToCart, deleteFromCart } from "../actions/cartAction";
 
 const CartScreen = () => {
   const cartState = useSelector((state) => state.cartReducer);
@@ -55,6 +55,14 @@ const CartScreen = () => {
                       src={item.image}
                       style={{ width: "80px", height: "80px" }}
                     />
+                    <FaTrash
+                      className="text-danger"
+                      style={{ cursor: "pointer", marginLeft: "20px" }}
+                      onClick={() => {
+                        dispatch(deleteFromCart(item));
+                      }}
+                    />
+                    &nbsp;
                   </Col>
                   <hr />
                 </>
