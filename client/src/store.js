@@ -2,15 +2,22 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import { getAllPizzaReducer } from "./reducers/pizzaReducer";
 import { cartReducer } from "./reducers/cartReducer";
-import { registerUserReducer } from "./reducers/userReducer";
+import { registerUserReducer, loginUserReducer } from "./reducers/userReducer";
 
 // Get cart items from localStorage or default to an empty array
 const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+const currentUser = localStorage.getItem("currentItem")
+  ? JSON.parse(localStorage.getItem("currentUser"))
+  : null;
 
 // Initial state with cart items
 const initialState = {
   cartReducer: {
     cartItems,
+  },
+  loginUserReducer: {
+    currentUser,
   },
 };
 
@@ -19,6 +26,7 @@ const rootReducer = combineReducers({
   getAllPizzaReducer,
   cartReducer,
   registerUserReducer,
+  loginUserReducer,
 });
 
 // Middleware array
