@@ -7,7 +7,7 @@ import { registerUserReducer, loginUserReducer } from "./reducers/userReducer";
 // Get cart items from localStorage or default to an empty array
 const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-const currentUser = localStorage.getItem("currentItem")
+const currentUser = localStorage.getItem("currentUser")
   ? JSON.parse(localStorage.getItem("currentUser"))
   : null;
 
