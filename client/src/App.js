@@ -7,7 +7,7 @@ import Policy from "./components/Policy";
 import NavBar from "./components/NavBar";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
-import Register from "./screens/Register";
+import Register from "./screens/RegisterScreen";
 import Login from "./screens/LoginScreen";
 
 function App() {

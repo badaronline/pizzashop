@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userAction";
+import Loader from "../components/Loader";
+import Success from "../components/Success";
+import Error from "../components/Error";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,6 +18,9 @@ const Login = () => {
     }
   }, []);
 
+  const loginState = useSelector((state) => state.loginUserReducer);
+  const { error, success, loading } = loginState;
+
   const loginHandler = () => {
     const user = { email, password };
     dispatch(loginUser(user));
@@ -21,6 +28,10 @@ const Login = () => {
   return (
     <>
       <Container>
+        {loading && <Loader />}
+        {success && <Success success="User login Successfully" />}
+        {error && <Error error="User not registered" />}
+
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>

@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { UseSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../actions/userAction";
+import Loader from "../components/Loader";
+import Success from "../components/Success";
+import Error from "../components/Error";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const registerState = useSelector((state) => state.registerUserReducer);
+  const { error, success, loading } = registerState;
+
   const dispatch = useDispatch();
 
   const registerHandler = () => {
@@ -26,6 +33,9 @@ const Register = () => {
 
   return (
     <Container className="mt-5">
+      {loading && <Loader />}
+      {success && <Success success="User Registered Successfully" />}
+      {error && <Error error="Something went wrong" />}
       <Form className="p-4 shadow-lg rounded bg-light">
         <h1 className="mb-4">Registration</h1>
         <Form.Group controlId="formBasicName">
