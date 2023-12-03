@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { getAllPizzaReducer } from "./reducers/pizzaReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { registerUserReducer, loginUserReducer } from "./reducers/userReducer";
+import { placeOrderReducer } from "./reducers/orderReducer";
 
 // Get cart items from localStorage or default to an empty array
 const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   cartReducer,
   registerUserReducer,
   loginUserReducer,
+  placeOrderReducer,
 });
 
 // Middleware array
