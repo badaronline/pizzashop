@@ -15,10 +15,6 @@ router.post("/placeorder", async (req, res) => {
       email: token.email,
       source: token.id,
     });
-    console.log(customer.id);
-    console.log(customer.email);
-    console.log(email);
-    console.log(source);
     const payment = await stripeInstance.charges.create(
       {
         amount: subTotal * 100,
@@ -31,12 +27,13 @@ router.post("/placeorder", async (req, res) => {
       }
     );
 
-    if (payment) {
+    if (payment.status === "succeeded") {
       res.send("Payment done successfully");
     } else {
       res.send("Payment failed");
     }
   } catch (error) {
+    console.error("Error placing order", error);
     res.status(400).json({
       message: "Something went wrong",
       error: error.stack,
