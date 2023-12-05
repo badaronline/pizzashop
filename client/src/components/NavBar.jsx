@@ -28,9 +28,10 @@ const NavBar = () => {
             <Nav className="ms-auto">
               {currentUser ? (
                 <LinkContainer to="/">
-                  {/* <Nav.Link>{currentUser.name}</Nav.Link> */}
                   <NavDropdown title={currentUser.name} id="nav-dropdown">
-                    <NavDropdown.Item eventKey="4.1">Order</NavDropdown.Item>
+                    <LinkContainer to="/orders">
+                      <NavDropdown.Item>Order</NavDropdown.Item>
+                    </LinkContainer>
                     <NavDropdown.Item
                       onClick={() => {
                         dispatch(logoutUser());

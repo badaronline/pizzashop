@@ -57,4 +57,17 @@ router.post("/placeorder", async (req, res) => {
   }
 });
 
+router.post("/getuserorder", async (req, res) => {
+  const { userId } = req.body;
+  try {
+    const orders = await orderModel.find({ userId });
+    res.status(200).send(orders);
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong",
+      error: error.stack,
+    });
+  }
+});
+
 export default router;

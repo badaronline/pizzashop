@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 import Register from "./screens/RegisterScreen";
 import Login from "./screens/LoginScreen";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/orders" element={<OrderScreen />} />
         <Route path="/cart" element={<CartScreen />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
