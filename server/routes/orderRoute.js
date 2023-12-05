@@ -1,6 +1,7 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import stripe from "stripe"; // Use import for the stripe module
+import orderModel from "../models/orderModel.js";
 
 const router = express.Router();
 const stripeSecretKey =
@@ -28,6 +29,21 @@ router.post("/placeorder", async (req, res) => {
     );
 
     if (payment.status === "succeeded") {
+      const newOrder = new orderModel({
+        name: currentUser.name,
+        email: currentUser.email,
+        userId: currentUser._id,
+        orderItems: cartItems,
+        orderAmount: subTotal,
+        shippingAddress: {
+          street: token.card.address_line1,
+          city: token.card.address_city,
+          country: token.card.address_country,
+          zipCode: token.card.address_zip,
+        },
+        transactionId: payment.source.id,
+      });
+      await newOrder.save();
       res.send("Payment done successfully");
     } else {
       res.send("Payment failed");
