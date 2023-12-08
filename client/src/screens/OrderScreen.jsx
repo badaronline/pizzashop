@@ -16,7 +16,7 @@ const OrderScreen = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center mb-4">Your Orders</h1>
+      <h1 className="text-center mb-4 mt-4">Your Orders</h1>
       {loading && <Loader />}
       {error && <Error error="Something went wrong" />}
       {orders &&
@@ -27,10 +27,21 @@ const OrderScreen = () => {
                 <Col md={4}>
                   <h4>Items:</h4>
                   {order.orderItems.map((item) => (
-                    <h6 key={item.name}>
-                      {item.name} [{item.variant}] * {item.quantity} ={" "}
-                      {item.price}
-                    </h6>
+                    <div className="mb-2">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          marginRight: "10px",
+                        }}
+                      />
+                      <span>
+                        {item.name} [{item.variant}] * {item.quantity} = €
+                        {item.price}
+                      </span>
+                    </div>
                   ))}
                 </Col>
                 <Col md={4}>
