@@ -6,6 +6,7 @@ import { placeOrder } from "../actions/orderAction";
 import Loader from "./Loader";
 import Error from "./Error";
 import Success from "./Success";
+import { clearCart } from "../actions/cartAction";
 
 const Checkout = ({ subTotal }) => {
   const orderState = useSelector((state) => state.placeOrderReducer);
@@ -14,6 +15,7 @@ const Checkout = ({ subTotal }) => {
   const dispatch = useDispatch();
   const tokenHandler = (token) => {
     dispatch(placeOrder(token, subTotal));
+    dispatch(clearCart());
     console.log(token);
   };
   return (

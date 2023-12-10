@@ -30,3 +30,8 @@ export const deleteFromCart = (pizza) => (dispatch, getState) => {
     JSON.stringify(getState().cartReducer.cartItems)
   );
 };
+
+export const clearCart = () => (dispatch) => {
+  dispatch({ type: "CLEAR_CART" });
+  localStorage.removeItem("cartItems"); // to clear the cart from local storage
+};

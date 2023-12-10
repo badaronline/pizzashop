@@ -1,4 +1,5 @@
 import axios from "axios";
+import { clearCart } from "./cartAction";
 
 export const placeOrder = (token, subTotal) => async (dispatch, getState) => {
   dispatch({ type: "PLACE_ORDER_REQUEST" });
@@ -12,6 +13,8 @@ export const placeOrder = (token, subTotal) => async (dispatch, getState) => {
       cartItems,
     });
     dispatch({ type: "PLACE_ORDER_SUCCESS" });
+    // Clear the cart after successfully placing the order
+    dispatch(clearCart());
     console.log(res.data);
   } catch (error) {
     dispatch({ type: "PLACE_ORDER_FAIL", payload: error.response.data });
