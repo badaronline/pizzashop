@@ -18,20 +18,31 @@ const Checkout = ({ subTotal }) => {
     dispatch(clearCart());
     console.log(token);
   };
+
+  const cartItems = useSelector((state) => state.cartReducer.cartItems);
+
   return (
     <>
-      {loading && <Loader />}
-      {error && <Error error="Something went wrong" />}
-      {success && <Success success="Order placed successfully" />}
-      <StripeCheckout
-        amount={subTotal * 100}
-        shippingAddress
-        token={tokenHandler}
-        stripeKey="pk_test_51OJ1SOBYR2toddcKGjZR9OvpW0p1qtE8YvICvqvINW9NlFy1cBcv6FUhHsyK6B05Hc4TUR04VCa1wBDZJGE9c8xb00M3jsSucz"
-        currency="EUR"
-      >
-        <Button>Pay Now</Button>
-      </StripeCheckout>
+      {cartItems.length === 0 ? (
+        <p style={{ color: "red" }}>
+          Your cart is empty. Add items before proceeding to checkout.
+        </p>
+      ) : (
+        <>
+          {loading && <Loader />}
+          {error && <Error error="Something went wrong" />}
+          {success && <Success success="Order placed successfully" />}
+          <StripeCheckout
+            amount={subTotal * 100}
+            shippingAddress
+            token={tokenHandler}
+            stripeKey="pk_test_51OJ1SOBYR2toddcKGjZR9OvpW0p1qtE8YvICvqvINW9NlFy1cBcv6FUhHsyK6B05Hc4TUR04VCa1wBDZJGE9c8xb00M3jsSucz"
+            currency="EUR"
+          >
+            <Button>Pay Now</Button>
+          </StripeCheckout>
+        </>
+      )}
     </>
   );
 };
