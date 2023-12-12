@@ -7,11 +7,15 @@ const Pizza = ({ pizza }) => {
   const [variant, setVariant] = useState("small");
   const [quantity, setQuantity] = useState(1);
   const [show, setShow] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false); // New state variable
 
   const dispatch = useDispatch();
+
   const addToCartHandler = () => {
     dispatch(addToCart(pizza, quantity, variant));
+    setAddedToCart(true); // Set addedToCart to true when the item is added to the cart
   };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -36,7 +40,7 @@ const Pizza = ({ pizza }) => {
                   onChange={(e) => setVariant(e.target.value)}
                 >
                   {pizza.variants.map((variant) => (
-                    <option>{variant}</option>
+                    <option key={variant}>{variant}</option>
                   ))}
                 </select>
               </Col>
@@ -47,7 +51,9 @@ const Pizza = ({ pizza }) => {
                   onChange={(e) => setQuantity(e.target.value)}
                 >
                   {[...Array(10).keys()].map((v, i) => (
-                    <option value={i + 1}>{i + 1}</option>
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1}
+                    </option>
                   ))}
                 </select>
               </Col>
@@ -66,9 +72,12 @@ const Pizza = ({ pizza }) => {
             <Col md={6}>
               <Button
                 onClick={addToCartHandler}
-                className="bg-warning text-white"
+                className={`bg-warning text-white ${
+                  addedToCart ? "disabled" : ""
+                }`}
+                disabled={addedToCart}
               >
-                Add to cart
+                {addedToCart ? "Added to Cart" : "Add to Cart"}
               </Button>
             </Col>
           </Row>
