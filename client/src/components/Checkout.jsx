@@ -16,7 +16,6 @@ const Checkout = ({ subTotal }) => {
   const tokenHandler = (token) => {
     dispatch(placeOrder(token, subTotal));
     dispatch(clearCart());
-    console.log(token);
   };
 
   const cartItems = useSelector((state) => state.cartReducer.cartItems);
