@@ -23,7 +23,7 @@ const Contact = () => {
             <Table striped bordered hover className="text-center">
               <thead>
                 <tr>
-                  <th className="bg-warning" text-center colSpan={3}>
+                  <th className="bg-warning" colSpan={3}>
                     ---Contact Details---
                   </th>
                 </tr>
@@ -57,6 +57,7 @@ const Contact = () => {
             <Image
               src="images/bbqpizza.jpg"
               style={{ width: "100%", height: "95%" }}
+              alt="Pizza"
             />
           </Col>
         </Row>

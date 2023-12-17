@@ -65,8 +65,8 @@ const About = () => {
             </p>
           </Col>
         </Row>
+        <h1>Our Cheif</h1>
         <Row>
-          <h1>Our Cheif</h1>
           <Col md={3}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
             molestiae excepturi et quisquam, consectetur ipsum suscipit quas.

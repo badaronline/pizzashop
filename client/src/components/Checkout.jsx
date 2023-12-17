@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ const Checkout = ({ subTotal }) => {
   const { loading, error, success } = orderState;
 
   const dispatch = useDispatch();
+
   const tokenHandler = (token) => {
     dispatch(placeOrder(token, subTotal));
     dispatch(clearCart());
@@ -20,8 +21,6 @@ const Checkout = ({ subTotal }) => {
 
   const userLogin = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userLogin;
-
-  const [isLoggedIn, setIsLoggedIn] = useState(!!currentUser);
 
   const cartItems = useSelector((state) => state.cartReducer.cartItems);
 
@@ -36,7 +35,7 @@ const Checkout = ({ subTotal }) => {
           {loading && <Loader />}
           {error && <Error error="Something went wrong" />}
           {success && <Success success="Order placed successfully" />}
-          {isLoggedIn ? (
+          {currentUser ? (
             <StripeCheckout
               amount={subTotal * 100}
               shippingAddress
