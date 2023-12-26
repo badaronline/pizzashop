@@ -5,8 +5,8 @@ import pizzaModel from "../models/pizzaModel.js";
 // GET ALL PIZZA
 router.get("/getAllPizzas", async (req, res) => {
   try {
-    const pizzas = await pizzaModel.find({});
-    res.send(pizzas);
+    const pizzas = await pizzaModel.find();
+    pizzas.length > 0 && res.send(pizzas);
   } catch (error) {
     res.json({ message: error });
   }

@@ -2,10 +2,11 @@ import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import stripe from "stripe"; // Use import for the stripe module
 import orderModel from "../models/orderModel.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const router = express.Router();
-const stripeSecretKey =
-  "sk_test_51OJ1SOBYR2toddcKirkTf5OM9t01QzQDQ5pmtgnxAgrKcaaLmDqz9PerwahvVPXa5ATD4GXPS2q337ea2N7IUTr600t2ugz1r7";
+const stripeSecretKey = process.env.STRIPE_SECRETKEY;
 
 const stripeInstance = stripe(stripeSecretKey);
 
