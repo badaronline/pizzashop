@@ -1,15 +1,9 @@
 import express from "express";
+import { getAllPizzas } from "../controllers/pizzaController.js";
+
 const router = express.Router();
-import pizzaModel from "../models/pizzaModel.js";
 
 // GET ALL PIZZA
-router.get("/getAllPizzas", async (req, res) => {
-  try {
-    const pizzas = await pizzaModel.find();
-    pizzas.length > 0 && res.send(pizzas);
-  } catch (error) {
-    res.json({ message: error });
-  }
-});
+router.get("/getAllPizzas", getAllPizzas);
 
 export default router;
